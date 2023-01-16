@@ -26,8 +26,7 @@ void selection(int A[], int n){
 }
 
 int main(){
-    int n;
-    int A[n];
+    int n, A[n];
 
     cout<<"Enter the size of the array : ";
     cin>>n;

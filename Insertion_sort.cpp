@@ -15,11 +15,14 @@ void swap(int A[], int a, int b){
 }
 
 void insertion(int A[], int n){
-    for(int i=0; i<n; i++){
-        for(int j = 1; j<n; j++){
-            if(A[j] < A[i])
-            swap (A, i, j);
+    for(int i=1; i<n; i++){
+        int current = A[i];
+        int j = i-1;
+        while( A[j]>current && j>=0){
+            A[j+1] = A[j];
+            j--;
         }
+        A[j+1] = current;
     }
 }
 
