@@ -1,31 +1,57 @@
 #include<iostream>
 using namespace std;
 
-int main(){
-    int n;
-    int a[n];
+class node{
+    public: 
+        int data;
+        node* next;
+        node(int x){
+            this -> data = x;
+            this -> next = NULL;
+        }
+};
 
-    cout<<"Enter the size of the array : ";
-    cin>>n;
-    cout<<"Enter the elements of the array : ";
-    for(int i =0; i<n; i++){
-        cin>>a[i];
-    }
+void insertAtHead(node* &head ,int d){
+    node* tmp = new node(d);
+    tmp -> next= head;
+    head = tmp;
+}
 
-    for(int i=0; i<n; i++){
-            for(int j = i+1; j<n; j++){
-                int tmp = a[i];
-                a[i] = a[j];
-                a[j] = tmp;
-            }
-        }
-        for(int i =0; i<n; i++){
-            a[i] = a[i]*i;
-        }
-        int sum =0;
-        for(int j=0; j<n;j++){
-            sum = sum + a[j];
-        }
-        return sum;
+
+void insertAtPos(int position, int d, node* &head){
     
+    if(position == 1){
+        insertAtHead(head, d);
+    }
+    node* tmp = new node(d);
+    node* t=head;
+    int cnt =1;
+    while(cnt!=position-1){
+        t = t->next;
+        cnt++;
+    }
+    tmp->next = t->next;
+    t->next = tmp;
+}
+
+void print(node* &head){
+    node* tmp= head;
+    while(tmp != NULL){
+        cout<<tmp -> data<<" -> ";
+        tmp = tmp->next;
+    }cout<<"NULL"<<endl;
+}
+
+
+int main(){
+    node* node1 = new node(9);
+    node* head = node1;
+    node* tail = node1;
+    insertAtHead(head , 8);
+    
+    print(head);
+    insertAtPos(3, 5, head);
+    insertAtPos(1, 2, head);
+    print(head);
+    return 0;
 }
